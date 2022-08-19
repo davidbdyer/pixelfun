@@ -1,0 +1,47 @@
+@import 'reset.css';
+
+:root {
+	--square-size: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+	overflow: hidden;
+	gap: 1rem;
+	background-color: #111;
+}
+
+.primary-header {
+	color: white;
+	font-size: 2rem;
+	font-family: 'Silkscreen', cursive;
+}
+
+.container__drawing {
+	display: grid;
+	grid-template-columns: repeat(20, 1fr);
+	gap: calc(var(--square-size) / 4);
+	cursor: pointer;
+}
+
+.square {
+	aspect-ratio: 1;
+	width: var(--square-size);
+	background-color: #1d1d1d;
+	box-shadow: 0 0 2px #000;
+	transition: 2s ease;
+}
+
+.square:hover {
+	transition-duration: 0s;
+}
+
+.bottom-controls {
+	width: 100%;
+	max-width: var(--max-width);
+}

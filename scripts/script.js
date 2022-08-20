@@ -1,58 +1,60 @@
-const drawing = document.getElementById('container__drawing');
+const canvas = document.querySelector('#container__canvas');
+const brushBtn = document.querySelector('#btn__brush')
+const eraserBtn = document.querySelector('#btn__eraser')
+const clearBtn = document.querySelector('#btn__clear')
+
+
 const colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '#2ecc71'];
 const squares = 500;
 
-let isPressed = { left: false, right: false, };
+let currentTool = 'brush';
+let isPressed = false;
 
-// create squares for drawing
-// trigger functions
+// Generate buttons and add event listener to squares
 for (let i = 0; i < squares; i++) {
   const square = document.createElement('div');
   square.classList.add('square');
 
-  drawing.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    if (e.button == 0) {
-      isPressed.left = true;
-    } else if (e.button == 2) {
-      isPressed.right = true;
-    }
-  });
-
   square.addEventListener('mouseover', () => {
-    setColor(square, isPressed)
-    removeColor(square, isPressed)
-  });
-
-  square.addEventListener('mousedown', (e) => {
-    if (e.button == 0) {
-      isPressed.left = true;
+    if (currentTool == 'brush') {
       setColor(square, isPressed)
-    } else if (e.button == 2) {
-      isPressed.right = true;
+    } else if (currentTool == 'eraser') {
       removeColor(square, isPressed)
     }
   });
 
-  drawing.addEventListener('mouseup', (e) => {
-    e.preventDefault();
-    isPressed.left = false;
-    isPressed.right = false;
+  square.addEventListener('mousedown', () => {
+    isPressed = true;
+    if (currentTool == 'brush') {
+      setColor(square, isPressed)
+    } else if (currentTool == 'eraser') {
+      removeColor(square, isPressed)
+    }
   });
 
-  drawing.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-
-  });
-
-  drawing.appendChild(square);
+  canvas.appendChild(square);
 }
 
+// Add event listener to canvas
+canvas.addEventListener('mousedown', (e) => {
+  e.preventDefault();
+  isPressed = true;
+});
+canvas.addEventListener('mouseup', (e) => {
+  e.preventDefault();
+  isPressed = false;
+});
+
+// Controls
+brushBtn.addEventListener('click', () => { setTool('brush') })
+eraserBtn.addEventListener('click', () => { setTool('eraser') })
+clearBtn.addEventListener('click', () => { clearCanvas() })
+
 // --------------------
-// functions declared
+// - functions declared
 // --------------------
 function setColor(element, pressed) {
-  if (pressed.left === true) {
+  if (pressed === true) {
     const color = getRandomColor();
     element.style.background = color;
     element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
@@ -60,7 +62,7 @@ function setColor(element, pressed) {
 }
 
 function removeColor(element, pressed) {
-  if (pressed.right === true) {
+  if (pressed === true) {
     element.style.background = '#1d1d1d';
     element.style.boxShadow = '0 0 2px #000';
   }
@@ -68,4 +70,15 @@ function removeColor(element, pressed) {
 
 function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function setTool(tool) {
+  currentTool = tool
+}
+
+function clearCanvas() {
+  const squares = document.querySelectorAll('.square');
+  for (let square of squares) {
+    removeColor(square, true)
+  }
 }

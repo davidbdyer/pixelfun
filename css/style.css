@@ -1,19 +1,19 @@
 @import 'reset.css';
 
 :root {
-	--square-size: clamp(0.75rem, 2vw, 1.5rem);
+	--square-size: clamp(0.75rem, 2vh, 1.25rem);
 }
 
 body {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	align-items: center;
 	margin: 0;
-	overflow: hidden;
-	gap: 1rem;
+	/* gap: 1rem; */
 	background-color: #111;
+	height: 100vh;
+	overflow: hidden;
 }
 
 .primary-header {
@@ -22,7 +22,8 @@ body {
 	font-family: 'Silkscreen', cursive;
 }
 
-.container__drawing {
+/* drawing */
+.container__canvas {
 	display: grid;
 	grid-template-columns: repeat(20, 1fr);
 	gap: calc(var(--square-size) / 4);
@@ -30,18 +31,28 @@ body {
 }
 
 .square {
+	transition: 1s ease;
+	box-shadow: 0 0 2px #000;
+	background-color: #1d1d1d;
 	aspect-ratio: 1;
 	width: var(--square-size);
-	background-color: #1d1d1d;
-	box-shadow: 0 0 2px #000;
-	transition: 2s ease;
 }
 
-.square:hover {
-	transition-duration: 0s;
-}
-
+/* drawing controls */
 .bottom-controls {
 	width: 100%;
 	max-width: var(--max-width);
+}
+
+.btn {
+	border: 1px solid;
+	border-radius: 100vmax;
+	background: transparent;
+	padding-inline: 0.5em;
+	padding-block: 0.1em;
+	color: white;
+}
+
+.btn:active {
+	opacity: .7;
 }

@@ -89,6 +89,9 @@ body {
 	background-color: #1d1d1d;
 	aspect-ratio: 1;
 	width: var(--square-size);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
 /* drawing controls */
 .bottom-controls {

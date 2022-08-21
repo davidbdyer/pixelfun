@@ -18,28 +18,44 @@ for (let i = 0; i < squares; i++) {
 }
 
 // Add event listener to canvas
+// mouse listeners
 canvas.addEventListener('mousedown', (e) => {
 	e.preventDefault();
 	isPressed = true;
 
-	const x = e.clientX; // Horizontal
-	const y = e.clientY; // Vertical
-	const target = document.elementFromPoint(x, y);
+	const target = findTarget(e, 'mouse');
 
 	if (target.classList.contains('square')) {
 		useTool(target, isPressed);
 	}
 });
+
+canvas.addEventListener('mouseover', (e) => {
+	const target = findTarget(e, 'mouse');
+
+	if (target.classList.contains('square')) {
+		useTool(target, isPressed);
+	}
+});
+
 canvas.addEventListener('mouseup', () => {
 	isPressed = false;
 });
-canvas.addEventListener('touchstart', (e) => {
-	e.preventDefault();
-	isPressed = true;
 
-	const x = e.touches[0].clientX; // Horizontal
-	const y = e.touches[0].clientY; // Vertical
-	const target = document.elementFromPoint(x, y);
+// touch listeners
+canvas.addEventListener('touchstart', (e) => {
+	isPressed = true;
+	e.preventDefault();
+
+	const target = findTarget(e, 'touch');
+
+	if (target.classList.contains('square')) {
+		useTool(target, isPressed);
+	}
+});
+
+canvas.addEventListener('touchmove', (e) => {
+	const target = findTarget(e, 'touch');
 
 	if (target.classList.contains('square')) {
 		useTool(target, isPressed);
@@ -49,32 +65,6 @@ canvas.addEventListener('touchstart', (e) => {
 canvas.addEventListener('touchend', () => {
 	isPressed = false;
 });
-
-canvas.addEventListener('touchmove', (e) => {
-	const x = e.touches[0].clientX; // Horizontal
-	const y = e.touches[0].clientY; // Vertical
-	const target = document.elementFromPoint(x, y);
-
-	if (target.classList.contains('square')) {
-		useTool(target, isPressed);
-	}
-});
-
-canvas.addEventListener('mouseover', (e) => {
-	const x = e.clientX; // Horizontal
-	const y = e.clientY; // Vertical
-	const target = document.elementFromPoint(x, y);
-
-	if (target.classList.contains('square')) {
-		useTool(target, isPressed);
-	}
-});
-
-
-
-
-
-
 
 // Controls
 brushBtn.addEventListener('click', () => {
@@ -86,6 +76,7 @@ eraserBtn.addEventListener('click', () => {
 clearBtn.addEventListener('click', () => {
 	clearCanvas();
 });
+
 
 // --------------------
 // - functions declared
@@ -126,4 +117,18 @@ function clearCanvas() {
 	for (let square of squares) {
 		removeColor(square, true);
 	}
+}
+
+// target element
+function findTarget(e, inputType) {
+	const cords = { x: 0, y: 0 }
+
+	if (inputType === 'touch') {
+		cords.x = e.touches[0].clientX; // Horizontal
+		cords.y = e.touches[0].clientY; // Vertical
+	} else if (inputType === 'mouse') {
+		cords.x = e.clientX; // Horizontal
+		cords.y = e.clientY; // Vertical
+	}
+	return document.elementFromPoint(cords.x, cords.y);
 }

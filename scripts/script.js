@@ -9,23 +9,10 @@ const squares = 500;
 let currentTool = 'brush';
 let isPressed = false;
 
-// Generate buttons and add event listener to squares
+// Generate squares for canvas.
 for (let i = 0; i < squares; i++) {
 	const square = document.createElement('div');
 	square.classList.add('square');
-
-	square.addEventListener('mouseover', () => {
-		useTool(square, isPressed);
-	});
-
-	square.addEventListener('mousedown', () => {
-		isPressed = true;
-		useTool(square, isPressed);
-	});
-	square.addEventListener('touchstart', () => {
-		isPressed = true;
-		useTool(square, isPressed);
-	});
 
 	canvas.appendChild(square);
 }
@@ -34,6 +21,14 @@ for (let i = 0; i < squares; i++) {
 canvas.addEventListener('mousedown', (e) => {
 	e.preventDefault();
 	isPressed = true;
+
+	const x = e.clientX; // Horizontal
+	const y = e.clientY; // Vertical
+	const target = document.elementFromPoint(x, y);
+
+	if (target.classList.contains('square')) {
+		useTool(target, isPressed);
+	}
 });
 canvas.addEventListener('mouseup', () => {
 	isPressed = false;
@@ -41,10 +36,45 @@ canvas.addEventListener('mouseup', () => {
 canvas.addEventListener('touchstart', (e) => {
 	e.preventDefault();
 	isPressed = true;
+
+	const x = e.touches[0].clientX; // Horizontal
+	const y = e.touches[0].clientY; // Vertical
+	const target = document.elementFromPoint(x, y);
+
+	if (target.classList.contains('square')) {
+		useTool(target, isPressed);
+	}
 });
+
 canvas.addEventListener('touchend', () => {
 	isPressed = false;
 });
+
+canvas.addEventListener('touchmove', (e) => {
+	const x = e.touches[0].clientX; // Horizontal
+	const y = e.touches[0].clientY; // Vertical
+	const target = document.elementFromPoint(x, y);
+
+	if (target.classList.contains('square')) {
+		useTool(target, isPressed);
+	}
+});
+
+canvas.addEventListener('mouseover', (e) => {
+	const x = e.clientX; // Horizontal
+	const y = e.clientY; // Vertical
+	const target = document.elementFromPoint(x, y);
+
+	if (target.classList.contains('square')) {
+		useTool(target, isPressed);
+	}
+});
+
+
+
+
+
+
 
 // Controls
 brushBtn.addEventListener('click', () => {

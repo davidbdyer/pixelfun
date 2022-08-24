@@ -58,10 +58,15 @@ svg {
 	}
 }
 :root {
-	--h1-size: clamp(2rem, 2vw, 4rem);
+	--h1-size: clamp(2.4rem, 4.4vw, 4.4rem);
 	--square-size: calc(65vw / 20);
 	--gap-01: 1rem;
 	--border-rad-01: 0.5em;
+}
+@media (min-width: 45em) {
+	:root {
+		--square-size: calc(50vw / 20);
+	}
 }
 @media (orientation: landscape) {
 	:root {
@@ -93,6 +98,7 @@ main {
 	color: transparent;
 	font-size: var(--h1-size);
 	font-family: 'Silkscreen', cursive;
+	text-align: justify;
 }
 @-webkit-keyframes rainbow {
 	0% {

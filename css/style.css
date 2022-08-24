@@ -1,7 +1,15 @@
 @import 'reset.css';
 
 :root {
-	--square-size: clamp(0.75rem, 2vh, 1.25rem);
+	--square-size: calc(65vw / 20);
+	--gap-01: 1rem;
+	--border-rad-01: 0.5em;
+}
+
+@media (orientation: landscape) {
+	:root {
+		--square-size: calc(40vh / 20);
+	}
 }
 
 body {
@@ -9,17 +17,37 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 1rem;
 	margin: 0;
-	/* gap: 1rem; */
 	background-color: #111;
 	height: 100vh;
 	overflow: hidden;
 }
 
+main {
+	display: grid;
+	gap: var(--gap-01);
+}
+
 .primary-header {
-	color: white;
+	animation: rainbow 10s alternate-reverse infinite;
+	background-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 255, 0), rgb(0, 0, 255));
+	background-position: left;
+	background-size: 400%;
+	background-clip: text;
+	color: transparent;
 	font-size: 2rem;
 	font-family: 'Silkscreen', cursive;
+}
+
+@keyframes rainbow {
+	0% {
+		background-position: left;
+	}
+
+	100% {
+		background-position: right;
+	}
 }
 
 /* drawing */
@@ -41,13 +69,16 @@ body {
 
 /* drawing controls */
 .bottom-controls {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-01);
 	width: 100%;
 	max-width: var(--max-width);
 }
 
 .btn {
 	border: 1px solid;
-	border-radius: 100vmax;
+	border-radius: var(--border-rad-01);
 	background: transparent;
 	padding-inline: 0.5em;
 	padding-block: 0.1em;
@@ -55,5 +86,13 @@ body {
 }
 
 .btn:active {
-	opacity: .7;
+	opacity: 0.7;
+}
+
+.color-picker {
+	/* border-radius: var(--border-rad-01); */
+}
+
+.color-picker[type='color']::-webkit-color-swatch {
+	/* border-radius: 0.3em; */
 }

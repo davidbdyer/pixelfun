@@ -73,7 +73,11 @@ main {
 	flex-direction: column;
 	gap: var(--gap-01);
 	width: 100%;
-	max-width: var(--max-width);
+}
+
+.buttons {
+	display: flex;
+	gap: var(--gap-01);
 }
 
 .btn {
@@ -89,20 +93,27 @@ main {
 	opacity: 0.7;
 }
 
+.color-pickers {
+	display: flex;
+	gap: var(--gap-01);
+	width: 100%;
+}
+
 .color-picker {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	border: none;
 	border-radius: var(--border-rad-01);
-	height: 1rem;
+	width: 20%;
+	height: 2rem;
+}
+.color-picker::-webkit-color-swatch {
+	border: none;
+	border-radius: var(--border-rad-01);
 }
 
 .color-picker::-webkit-color-swatch-wrapper {
 	padding: 0;
-}
-
-.color-picker::-webkit-color-swatch {
-	border: none;
 }
 
 .sr-only {

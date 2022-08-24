@@ -134,7 +134,10 @@ main {
 	flex-direction: column;
 	gap: var(--gap-01);
 	width: 100%;
-	max-width: var(--max-width);
+}
+.buttons {
+	display: flex;
+	gap: var(--gap-01);
 }
 .btn {
 	border: 1px solid;
@@ -147,18 +150,25 @@ main {
 .btn:active {
 	opacity: 0.7;
 }
+.color-pickers {
+	display: flex;
+	gap: var(--gap-01);
+	width: 100%;
+}
 .color-picker {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	border: none;
 	border-radius: var(--border-rad-01);
-	height: 1rem;
-}
-.color-picker::-webkit-color-swatch-wrapper {
-	padding: 0;
+	width: 20%;
+	height: 2rem;
 }
 .color-picker::-webkit-color-swatch {
 	border: none;
+	border-radius: var(--border-rad-01);
+}
+.color-picker::-webkit-color-swatch-wrapper {
+	padding: 0;
 }
 .sr-only {
 	clip: rect(0, 0, 0, 0);

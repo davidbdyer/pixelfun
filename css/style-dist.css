@@ -148,10 +148,28 @@ main {
 	opacity: 0.7;
 }
 .color-picker {
-	/* border-radius: var(--border-rad-01); */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	border-radius: var(--border-rad-01);
+	height: 1rem;
 }
-.color-picker[type='color']::-webkit-color-swatch {
-	/* border-radius: 0.3em; */
+.color-picker::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+.color-picker::-webkit-color-swatch {
+	border: none;
+}
+.sr-only {
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap; /* added line */
 }
 
 /*# sourceMappingURL=style-dist.css.map */

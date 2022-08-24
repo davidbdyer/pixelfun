@@ -58,6 +58,7 @@ svg {
 	}
 }
 :root {
+	--h1-size: clamp(2rem, 2vw, 4rem);
 	--square-size: calc(65vw / 20);
 	--gap-01: 1rem;
 	--border-rad-01: 0.5em;
@@ -90,7 +91,7 @@ main {
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
-	font-size: 2rem;
+	font-size: var(--h1-size);
 	font-family: 'Silkscreen', cursive;
 }
 @-webkit-keyframes rainbow {
@@ -140,15 +141,19 @@ main {
 	gap: var(--gap-01);
 }
 .btn {
-	border: 1px solid;
+	transition: border-color 500ms ease;
+	border: 1px solid transparent;
 	border-radius: var(--border-rad-01);
-	background: transparent;
+	background-color: rgba(255, 255, 255, 0.1);
 	padding-inline: 0.5em;
 	padding-block: 0.1em;
 	color: white;
 }
 .btn:active {
 	opacity: 0.7;
+}
+.btn.active {
+	border-color: white;
 }
 .color-pickers {
 	display: flex;
@@ -160,7 +165,7 @@ main {
 	-moz-appearance: none;
 	border: none;
 	border-radius: var(--border-rad-01);
-	width: 20%;
+	width: calc((100% / 5) - var(--gap-01) * 0.8);
 	height: 2rem;
 }
 .color-picker::-webkit-color-swatch {
@@ -179,7 +184,8 @@ main {
 	width: 1px;
 	height: 1px;
 	overflow: hidden;
-	white-space: nowrap; /* added line */
+	white-space: nowrap;
+	/* added line */
 }
 
 /*# sourceMappingURL=style-dist.css.map */

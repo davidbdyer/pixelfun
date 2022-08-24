@@ -66,7 +66,7 @@ function findTarget(e, inputType) {
 }
 
 // color picker related
-function setColorPickers() {
+function setColorPickersColor() {
 	const pickerArray = Array.from(colorPickers);
 
 	for (let picker of pickerArray) {
@@ -74,6 +74,15 @@ function setColorPickers() {
 		picker.value = colors[i]
 	}
 }
+
+colorPickers.forEach((elm) => {
+	elm.addEventListener('change', (e) => {
+		const index = (e.target.id.slice(-1) - 1);
+		const newClr = e.target.value;
+		colors[index] = newClr;
+	})
+})
+
 
 
 // ------------------------------------
@@ -89,7 +98,7 @@ for (let i = 0; i < squares; i++) {
 }
 
 // set initial color picker colors to default color array
-setColorPickers()
+setColorPickersColor()
 
 // Add event listener to canvas
 // mouse listeners
@@ -150,3 +159,5 @@ eraserBtn.addEventListener('click', () => {
 clearBtn.addEventListener('click', () => {
 	clearCanvas();
 });
+
+// color pickers

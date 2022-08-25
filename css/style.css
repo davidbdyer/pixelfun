@@ -1,21 +1,25 @@
 @import 'reset.css';
 
 :root {
-	--h1-size: clamp(2.4rem, 4.4vw, 4.4rem);
-	--square-size: calc(65vw / 20);
-	--gap-01: 1rem;
-	--border-rad-01: 0.5em;
+	--fs-h1-size: clamp(2.4rem, 4.4vw, 4.4rem);
+	--fs-btn: .7rem;
+	--square-size: calc(40vh / 20);
+	--gap: 1rem;
+	--border-rad: 0.25em;
+	--picker-height: 1rem;
 }
 
-@media (min-width: 45em) {
+@media (max-aspect-ratio: 2 / 4 ) {
 	:root {
-		--square-size: calc(50vw / 20);
+		--square-size: calc(30vh / 20);
 	}
 }
 
-@media (orientation: landscape) {
+@media (min-width: 30rem) {
 	:root {
-		--square-size: calc(40vh / 20);
+		--fs-btn: 1rem;
+		--picker-height: 2rem;
+		--border-rad: 0.5em;
 	}
 }
 
@@ -24,16 +28,23 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--gap-00);
 	margin: 0;
 	background-color: #111;
 	height: 100vh;
 	overflow: hidden;
 }
 
+@media (max-height: 30em) {
+	body {
+		justify-content: start;
+		gap: calc(var(--gap) / 2);
+	}
+}
+
 main {
 	display: grid;
-	gap: var(--gap-01);
+	gap: var(--gap);
 }
 
 .primary-header {
@@ -43,7 +54,7 @@ main {
 	background-size: 400%;
 	background-clip: text;
 	color: transparent;
-	font-size: var(--h1-size);
+	font-size: var(--fs-h1-size);
 	font-family: 'Silkscreen', cursive;
 	text-align: justify;
 }
@@ -79,23 +90,24 @@ main {
 .bottom-controls {
 	display: flex;
 	flex-direction: column;
-	gap: var(--gap-01);
+	gap: var(--gap);
 	width: 100%;
 }
 
 .buttons {
 	display: flex;
-	gap: var(--gap-01);
+	gap: var(--gap);
 }
 
 .btn {
 	transition: border-color 500ms ease;
 	border: 1px solid transparent;
-	border-radius: var(--border-rad-01);
+	border-radius: var(--border-rad);
 	background-color: rgba(255, 255, 255, 0.1);
 	padding-inline: 0.5em;
 	padding-block: 0.1em;
 	color: white;
+	font-size: var(--fs-btn);
 }
 
 .btn:active {
@@ -108,7 +120,7 @@ main {
 
 .color-pickers {
 	display: flex;
-	gap: var(--gap-01);
+	gap: var(--gap);
 	width: 100%;
 }
 
@@ -116,14 +128,14 @@ main {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	border: none;
-	border-radius: var(--border-rad-01);
-	width: calc((100% / 5) - var(--gap-01) * 0.8);
-	height: 2rem;
+	border-radius: var(--border-rad);
+	width: calc((100% / 5) - var(--gap) * 0.8);
+	height: var(--picker-height);
 }
 
 .color-picker::-webkit-color-swatch {
 	border: none;
-	border-radius: var(--border-rad-01);
+	border-radius: var(--border-rad);
 }
 
 .color-picker::-webkit-color-swatch-wrapper {

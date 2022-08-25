@@ -222,17 +222,17 @@ oneColorBtn.addEventListener('click', () => {
 
 // Dynamic fontsize
 
-function textSizeTargetWidth(target, elm, tweakNum) {
-	const text = elm.textContent;
-	const targetWidth = target.clientWidth
-	const charCount = text.length
-	const fontSize = `${(targetWidth / charCount) * tweakNum}px`
-	elm.style.fontSize = fontSize;
-}
-
-const main = document.querySelector('main');
-const h1 = document.querySelector('h1');
-textSizeTargetWidth(main, h1, 1.38)
-window.addEventListener('resize', () => {
-	textSizeTargetWidth(main, h1, 1.38)
-})
+// function textSizeTargetWidth(target, elm, tweakNum) {
+// 	const text = elm.textContent;
+// 	const targetWidth = target.clientWidth
+// 	const charCount = text.length
+// 	const fontSize = `${(targetWidth / charCount) * tweakNum}px`
+// 	elm.style.fontSize = fontSize;
+// }
+//
+// const main = document.querySelector('main');
+// const h1 = document.querySelector('h1');
+// textSizeTargetWidth(main, h1, 1.38)
+// window.addEventListener('resize', () => {
+// 	textSizeTargetWidth(main, h1, 1.38)
+// })

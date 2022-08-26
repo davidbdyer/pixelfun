@@ -21,7 +21,6 @@
 	:root {
 		--fs-btn: 1rem;
 		--picker-height: clamp(2rem, 2vw, 3rem);
-		--fs-h1-size: 4.5rem;
 	}
 }
 

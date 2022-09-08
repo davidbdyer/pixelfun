@@ -82,6 +82,7 @@ main {
 	color: transparent;
 	font-size: var(--fs-h1-size);
 	font-family: 'Silkscreen', cursive;
+	font-weight: 700;
 	text-align: justify;
 	animation: rainbow 10s alternate-reverse infinite;
 }

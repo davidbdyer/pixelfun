@@ -17,6 +17,12 @@
 	}
 }
 
+@media (min-width: 23em) {
+	:root {
+		--fs-btn: 1rem;
+	}
+}
+
 @media (min-width: 30rem) {
 	:root {
 		--fs-btn: 1rem;
